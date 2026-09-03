@@ -331,47 +331,36 @@
             const form = document.querySelector("#form");
             form.action = URL_APP;
 
-            form.addEventListener("submit", async (ev) => {
-                ev.preventDefault();
+            form.addEventListener("submit", function (ev) {
+              ev.preventDefault();
 
-                const name = document.querySelector("[name=name]:checked");
-                const message = document.querySelector("[name=message]");
-                const submitButton = form.querySelector('input[type="submit"]');
+              var name = document.querySelector("[name=name]:checked");
+              var message = document.querySelector("[name=message]");
 
-                const details = {
-                    name: name ? name.value : "",
-                    message: message.value.trim(),
-                };
+              if (!name || !message.value.trim()) {
+                alert("Барлық өрістерді толтырыңыз!");
+                return;
+              }
 
-                if (!details.name || !details.message) {
-                    alert("Барлық өрістерді толтырыңыз!");
-                    return;
-                }
+              var details = {
+                name: name.value,
+                message: message.value.trim()
+              };
 
-                const formBody = Object.entries(details)
-                    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-                    .join("&");
-
-                submitButton.disabled = true;
-
-                fetch(URL_APP, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-                    mode: "no-cors",
-                    body: formBody,
-                })
-                    .then(() => {
-                        message.value = "";
-                        if (name) name.checked = false;
-                        alert("Жауабыңызға рахмет!");
-                    })
-                    .catch((err) => {
-                        console.error("Error:", err);
-                        alert("Ошибка!");
-                    })
-                    .finally(() => {
-                        submitButton.disabled = false;
-                    });
+              // Отправка без ожидания ответа
+              fetch(URL_APP, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+                mode: "no-cors",
+                body: Object.entries(details)
+                  .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
+                  .join("&")
+              }).catch(function (err) { console.error('Error:', err); });
+            
+              // Очистка и уведомление сразу
+              if (name) name.checked = false;
+              message.value = '';
+              alert('Жауабыңызға рахмет!');
             });
         </script>
     </body>
