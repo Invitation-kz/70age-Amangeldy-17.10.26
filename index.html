@@ -22,7 +22,7 @@
 
         <style>
             body {
-                background-color: #f4f4f4;  /* изменено с #fffef8 */
+                background-color: #f4f4f4;
                 margin: 0;
             }
 
@@ -53,67 +53,86 @@
                 opacity: 1;
                 transition-duration: 1.4s;
             }
+
+            /* ===== Стили формы из второго файла ===== */
             .form-inner {
                 position: relative;
             }
-            .radio-group {
-                width: 90%;
-                margin: 0 auto 15px;
-                text-align: left;
+            .form-inner label {
+                display: block;
+                padding-left: 15px;
+                font-family: 'Roboto', sans-serif;
+                color: rgba(255, 255, 255, .6);
+                text-transform: uppercase;
+                font-size: 15px;
+                padding: 0 15px;
+                margin: 10px 0 15px;
             }
-            .radio-group div {
-                margin: 8px 0;
+            .btn {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                transition: transform 0.3s ease;
+            }
+            .btn:hover {
+                transform: scale(1.1);
+            }
+            .form-inner textarea {
+                width: 80%;
+                text-align: center;
+                margin-top: 5px;
+                border-radius: 10px;
+                margin-bottom: 0px;
+                font-size: 16px;
+                font-weight: 300;
+                background-color: #F4F4F4;
+                border-color: #1d3f57 0.5px;
+                letter-spacing: 0.11em;
+                height: 30px;
+                font-family: 'Roboto', sans-serif;
+                resize: none;
+            }
+            .form-inner input[type="submit"] {
+                background: linear-gradient(to top left, #4A6C6B 0%, #4A6C6B 100%);
+                width: 80%;
+                height: 30px;
+                text-align: center;
+                border: 0;
+                border-bottom: 2px #aaa;
+                border-radius: 10px;
+                font-size: 16px;
+                font-weight: 400;
+                background-color: #EFEFEF;
+                letter-spacing: 0.11em;
+                font-family: 'Roboto', sans-serif;
+                padding: 0 10px;
+                margin: 10px 0 1px;
+                color: white;
+            }
+            .radio-group {
+                text-align: left;
+                width: 80%;
+                font-size: 20px;
+                margin-top: 1px;
+                margin-bottom: 10px;
+                color: #000000;
             }
             .radio-group label {
                 display: inline;
-                margin: 0;
                 padding: 0;
+                margin: 0 0 0 5px;
                 font-size: 18px;
-                color: #7b7b7b;
+                color: #000;
                 text-transform: none;
-                font-family: "Roboto", sans-serif;
             }
             .radio-group input[type="radio"] {
                 vertical-align: middle;
                 accent-color: #8a8a8a;
                 margin-right: 8px;
             }
-            .form-inner textarea {
-                width: 90%;
-                height: 36px;
-                line-height: 30px;
-                border: 2px solid #777;
-                border-radius: 12px;
-                text-align: center;
-                resize: none;
-                padding-top: 2px;
-                color: #777;
-                font-size: 16px;
-                background: #fff;
-                font-family: "Roboto", sans-serif;
-            }
-            .form-inner textarea::placeholder {
-                color: #8a8a8a;
-            }
-            .form-inner input[type="submit"] {
-                width: 90%;
-                height: 48px;
-                border: none;
-                border-radius: 12px;
-                background: #6d958c;
-                color: #fff;
-                font-size: 20px;
-                margin-top: 15px;
-                font-family: "Roboto", sans-serif;
-            }
-            .btn {
-                padding: 10px 20px;
-                border: none;
-                transition: 0.3s ease;
-            }
-            .btn:hover {
-                transform: scale(1.03);
-            }
+            /* ===== Конец стилей формы ===== */
+
             .fade-in {
                 opacity: 0;
                 transform: translateY(20px);
@@ -136,7 +155,7 @@
                 background-color: rgba(0, 0, 0, 0.8);
             }
             .modal-content {
-                background-color: #f4f4f4;  /* изменено с #fffef8 */
+                background-color: #f4f4f4;
                 margin: 30% auto;
                 padding: 30px 20px;
                 border-radius: 16px;
@@ -307,12 +326,12 @@
         </script>
 
         <script>
-            // Отправка формы (RSVP) — скрипт оставлен из первого файла, так как он корректен
-            const URL_APP = "https://script.google.com/macros/s/AKfycbyhjZt7SIrx7pNo3qMmSW9-A_WzdNPkwKFDa1enPlvM5Xw8AyoUX_6ToeEujsnmX_6Syg/exec";
+            // ===== НОВЫЙ СКРИПТ ОТПРАВКИ (из второго файла с исправлениями) =====
+            const URL_APP = "https://script.google.com/macros/s/AKfycbxKao76cb4AJGyfLBI31ia2wPRDrQnvxEQ3qO_l2CO5Sd_UYtSRTaMVMXuKWgI1xIT-/exec";
             const form = document.querySelector("#form");
             form.action = URL_APP;
 
-            form.addEventListener("submit", async ev => {
+            form.addEventListener("submit", async (ev) => {
                 ev.preventDefault();
 
                 const name = document.querySelector("[name=name]:checked");
@@ -346,7 +365,7 @@
                         if (name) name.checked = false;
                         alert("Жауабыңызға рахмет!");
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         console.error("Error:", err);
                         alert("Ошибка!");
                     })
