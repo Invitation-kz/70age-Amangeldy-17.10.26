@@ -210,39 +210,32 @@
             </div>
         </center>
 
-        <center>
+        <!-- НОВАЯ ФОРМА (взята из второго файла) -->
+        <center style="margin-top: 0px;">
             <form class="transparent" method="post" id="form">
                 <div class="form-inner">
-                    <div class="radio-group">
-                        <div>
-                            <input type="radio" id="yes" name="name" value="Иә барамын" required />
-                            <label for="yes">Иә барамын</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="pair" name="name" value="Жұбайыммен барамын" />
-                            <label for="pair">Жұбайыммен барамын</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="no" name="name" value="Бара алмаймын" />
-                            <label for="no">Бара алмаймын</label>
-                        </div>
+                    <div class="radio-group" required>
+                        <input type="radio" id="question1_yes" name="name" value="Иә барамын" required>
+                        <label for="question1_yes">Иә барамын</label><br>
+                        <input type="radio" id="question1_yes" name="name" value="Жұбайыммен барамын" required>
+                        <label for="question1_yes">Жұбайыммен барамын</label><br>
+                        <input type="radio" id="question1_no" name="name" value="Бара алмаймын" required>
+                        <label for="question1_no">Бара алмаймын</label>
                     </div>
-
                     <textarea
                         required
                         name="message"
                         maxlength="100"
                         id="message"
-                        rows="1"
+                        cols="30"
+                        rows="4"
                         placeholder="Есіміңізді жазыңыз"
                     ></textarea>
-
-                    <input type="submit" value="Жіберу" class="btn" />
+                    <input type="submit" value="Жіберу" style="color:white;" class="btn">
                 </div>
             </form>
         </center>
+        <!-- КОНЕЦ НОВОЙ ФОРМЫ -->
 
         <img src="photo7.jpg" style="width: 100%; margin-top: 80px" />
 
@@ -314,7 +307,7 @@
         </script>
 
         <script>
-            // Отправка формы (RSVP)
+            // Отправка формы (RSVP) — скрипт оставлен из первого файла, так как он корректен
             const URL_APP = "https://script.google.com/macros/s/AKfycby8-Quzk24XNfDYAumVBQQEnoWHEMq7iklbW1ULYzKQrh02Aujlo2WIhCb68-t6bNr8/exec";
             const form = document.querySelector("#form");
             form.action = URL_APP;
